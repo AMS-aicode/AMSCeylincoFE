@@ -278,10 +278,11 @@ const AgentOnboarding = () => {
               Agent Onboarding
             </Typography>
           </Box>
+          {/* User Info
           <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
             <Typography variant="body2" color="text.secondary">Sanjiv</Typography>
             <Avatar alt="Sanjiv" src="" sx={{ width: 32, height: 32 }} />
-          </Box>
+          </Box> */}
         </Toolbar>
       </AppBar>
       {stage === -1 && (

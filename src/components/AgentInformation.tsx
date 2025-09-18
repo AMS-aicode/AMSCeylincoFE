@@ -64,14 +64,14 @@ const AgentInformation = () => {
           Agent Information
         </Typography>
         <Box sx={{ flex: 1 }} />
-        {/* User profile (top right) */}
+        {/* User profile (top right) 
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
           <Avatar src="/path/to/user.jpg" />
           <Box>
             <Typography sx={{ fontWeight: 600, fontSize: 16 }}>Sanjiv</Typography>
             <Typography sx={{ fontSize: 12, color: '#888' }}>Head of Branch</Typography>
           </Box>
-        </Box>
+        </Box>*/}
       </Box>
 
       {/* Agent Profile Section */}

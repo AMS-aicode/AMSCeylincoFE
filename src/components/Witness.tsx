@@ -153,24 +153,47 @@ const Witness = ({ onBack, onNext, applicationId, initialValues, onRefresh }: { 
   };
 
   // Validation
+ 
   const validate = () => {
-    const newErrors: any = {};
-    witnesses.forEach((w, idx) => {
-      if (!w.name) newErrors[`witness${idx}Name`] = "Required";
-      if (!w.nic) newErrors[`witness${idx}NIC`] = "Required";
-      else if (!/^\d{9}[Vv]$/.test(w.nic))
-        newErrors[`witness${idx}NIC`] = "NIC must be 9 digits followed by 'V'";
-      if (!w.address) newErrors[`witness${idx}Address`] = "Required";
-    });
-    Object.entries(policyAcceptances).forEach(([k, v]) => {
-      if (!v) newErrors[`policy_${k}`] = "Required";
-    });
-    // Validation passes if either a new signature is uploaded or a backend signature exists
-    if (!signature && !initialValues?.signatureFile) newErrors.signature = "Signature required";
-    if (signatureError) newErrors.signature = signatureError;
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
-  };
+  const newErrors: any = {};
+
+  witnesses.forEach((w, idx) => {
+    // Name validation
+    if (!w.name || w.name.trim().length < 3) {
+      newErrors[`witness${idx}Name`] = "Name is required (min 3 characters)";
+    }
+    // NIC validation (Sri Lankan NIC: 9 digits + V/v or 12 digits)
+    const nic = w.nic.trim().toUpperCase();
+    if (!nic) {
+      newErrors[`witness${idx}NIC`] = "NIC is required";
+    } else if (
+      !/^\d{9}[V]$/.test(nic) &&
+      !/^\d{12}$/.test(nic)
+    ) {
+      newErrors[`witness${idx}NIC`] = "NIC must be 9 digits + 'V' or 12 digits";
+    }
+    // Address validation
+    if (!w.address || w.address.trim().length < 5) {
+      newErrors[`witness${idx}Address`] = "Address is required (min 5 characters)";
+    }
+  });
+
+  // Policy acceptances
+  Object.entries(policyAcceptances).forEach(([k, v]) => {
+    if (!v) newErrors[`policy_${k}`] = "You must accept this policy";
+  });
+
+  // Signature validation
+  if (!signature && !initialValues?.signatureFile) {
+    newErrors.signature = "Signature is required";
+  }
+  if (signatureError) {
+    newErrors.signature = signatureError;
+  }
+
+  setErrors(newErrors);
+  return Object.keys(newErrors).length === 0;
+};
 
   // Next button handler
   const handleNext = async () => {
@@ -330,7 +353,7 @@ const Witness = ({ onBack, onNext, applicationId, initialValues, onRefresh }: { 
         <Button variant="outlined" color="error" type="button" onClick={onBack} sx={{ minWidth: 100, fontWeight: 600, borderRadius: 2, fontSize: '0.95rem', py: 1 }}>
           Back
         </Button>
-        <Button variant="contained" color="error" type="button" onClick={onNext} sx={{ minWidth: 100, fontWeight: 600, borderRadius: 2, fontSize: '0.95rem', py: 1 }}>
+        <Button variant="contained" color="error" type="button" onClick={handleNext} sx={{ minWidth: 100, fontWeight: 600, borderRadius: 2, fontSize: '0.95rem', py: 1 }}>
           Next
         </Button>
       </Box>
