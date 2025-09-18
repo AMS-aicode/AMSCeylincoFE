@@ -36,9 +36,16 @@ export default function LoginScreen() {
 
   useNoScroll();
 
-  // Hardcoded credentials for demo
+  // Hardcoded credentials for demo (expand as needed)
   const hardcoded = {
-    headOfBranch: { userId: 'C55451', password: 'Admin' },
+    'Head of Branch': { userId: 'C55451', password: 'Admin' },
+    'LIA': { userId: 'LIA001', password: 'LIApass' },
+    'Unit Head': { userId: 'UH001', password: 'UHpass' },
+    'RSM': { userId: 'RSM001', password: 'RSMpass' },
+    'Zonal': { userId: 'ZON001', password: 'ZONpass' },
+    'Manager Business Development': { userId: 'MBD001', password: 'MBDpass' },
+    'Life Operation Officer': { userId: 'LOO001', password: 'LOOpass' },
+    'Agency Admin': { userId: 'ADMIN001', password: 'ADMINpass' },
   };
 
   const handleLogin = () => {
@@ -49,8 +56,15 @@ export default function LoginScreen() {
       setError('Password is required.');
       return;
     }
-    setError('');
-    navigate('/dashboard');
+
+    // Validate credentials for selected role
+    const creds = hardcoded[role];
+    if (creds && userId === creds.userId && password === creds.password) {
+      setError('');
+      navigate('/dashboard');
+    } else {
+      setError('Invalid credentials.');
+    }
   };
 
   return (

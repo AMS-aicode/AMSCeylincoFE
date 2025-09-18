@@ -242,7 +242,7 @@ const BankDetailsForm: React.FC<BankDetailsFormProps> = ({ initialValues = {}, o
               </Button>
               <Box
                 sx={{
-                  border: '1px dashed #e53935',
+                  border: '1px dashed #7C0316',
                   borderRadius: 2,
                   width: '100%',
                   minHeight: 70,
@@ -299,7 +299,7 @@ const BankDetailsForm: React.FC<BankDetailsFormProps> = ({ initialValues = {}, o
             Next
           </Button>
         </Box>
-        {/* Defensive error boundary for file name and error display */}
+        {/* Defensive error boundary for file name and error display 
         {formik.values.passbookFile && typeof formik.values.passbookFile === 'object' && (
           <Box sx={{ mt: 1 }}>
             <Typography variant="caption" color="text.secondary">
@@ -311,7 +311,7 @@ const BankDetailsForm: React.FC<BankDetailsFormProps> = ({ initialValues = {}, o
           <Typography variant="caption" color="error">
             {formik.errors.passbookFile as string}
           </Typography>
-        )}
+        )}*/}
       </form>
     </Box>
   );

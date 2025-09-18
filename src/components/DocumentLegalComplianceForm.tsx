@@ -153,12 +153,12 @@ const DocumentLegalComplianceForm: React.FC<{ applicationId?: string | number, i
 			}}
 		>
 			<form onSubmit={formik.handleSubmit}>
-                <Box sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
-				 <Typography variant="h6" sx={{ mb: 2, color: 'primary.main', fontWeight: 700 }}>
-					Registration Application{' '}
-					<span style={{ color: '#888', fontWeight: 400 }}>Attachments</span>
-				</Typography>
-                </Box>
+				<Box sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
+					<Typography variant="h6" sx={{ mb: 2, color: 'primary.main', fontWeight: 700 }}>
+						Registration Application{' '}
+						<span style={{ color: '#888', fontWeight: 400 }}>Attachments</span>
+					</Typography>
+				</Box>
 				<Typography variant="body2" sx={{ color: 'error.main', mb: 2 }}>
 					* Please note that each attachment should not exceed 1 MB *
 				</Typography>
@@ -170,7 +170,7 @@ const DocumentLegalComplianceForm: React.FC<{ applicationId?: string | number, i
 									<Typography variant="subtitle1" sx={{ fontWeight: 600, color: '#222', mb: 1, textAlign: 'center' }}>
 										{field.label} <span style={{ color: '#7C0316' }}>*</span>
 									</Typography>
-									
+
 									<Typography variant="body2" sx={{ fontWeight: 500, textAlign: 'center', mb: 1 }}>
 										Choose only {field.accept} file to upload
 									</Typography>
@@ -179,11 +179,20 @@ const DocumentLegalComplianceForm: React.FC<{ applicationId?: string | number, i
 											<Typography variant="body2" sx={{ fontWeight: 600, color: '#222', mb: 1 }}>
 												{formik.values[field.name].name}
 											</Typography>
-											<img
-												src={field.accept === '.jpg' ? URL.createObjectURL(formik.values[field.name]) : '/assets/cloud-upload-red.svg'}
-												alt={formik.values[field.name].name}
-												style={{ width: 54, height: 54, margin: '0 auto' }}
-											/>
+											{field.accept === '.jpg' && (formik.values[field.name].type === 'image/jpeg' || formik.values[field.name].type === 'image/jpg') ? (
+												<img
+													src={URL.createObjectURL(formik.values[field.name])}
+													alt={formik.values[field.name].name}
+													style={{ width: 54, height: 54, margin: '0 auto' }}
+												/>
+											) : null}
+											{field.accept === '.pdf' && formik.values[field.name].type === 'application/pdf' ? (
+												<img
+													src="/assets/pdf-icon.svg"
+													alt="PDF icon"
+													style={{ width: 54, height: 54, margin: '0 auto' }}
+												/>
+											) : null}
 										</Box>
 									)}
 									{!formik.values[field.name] && (

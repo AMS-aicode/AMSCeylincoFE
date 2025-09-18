@@ -548,6 +548,7 @@ const EducationDetailsForm = ({ applicationId, onNext, onBack, initialValues }: 
                       onChange={e => setFieldValue('preExamNIC', e.target.value)}
                       error={Boolean(touched.preExamNIC && typeof errors.preExamNIC === 'string')}
                       helperText={typeof errors.preExamNIC === 'string' ? errors.preExamNIC : ''}
+                      disabled={Boolean(values.preExamNIC)}
                     />
                   </Grid>
                   <Grid item xs={12} sm={6}>

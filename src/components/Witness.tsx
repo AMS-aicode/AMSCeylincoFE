@@ -208,12 +208,12 @@ const Witness = ({ onBack, onNext, applicationId, initialValues, onRefresh }: { 
 
   return (
     <Box sx={{ background: '#fff', borderRadius: 2, p: { xs: 2, md: 4 }, boxShadow: 1, maxWidth: 1100, mx: 'auto', my: 4 }}>
-       <Box sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
-      <Typography variant="h6" color="primary" fontWeight={700} mb={2}>
-        Registration Application <span style={{ color: '#888', fontWeight: 400 }}>Witness Details</span>
-      </Typography>
+      <Box sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
+        <Typography variant="h6" color="primary" fontWeight={700} mb={2}>
+          Registration Application <span style={{ color: '#888', fontWeight: 400 }}>Witness Details</span>
+        </Typography>
       </Box>
-      
+
       <Grid container spacing={4}>
         {[0, 1].map((idx) => (
           <React.Fragment key={idx}>
@@ -292,7 +292,6 @@ const Witness = ({ onBack, onNext, applicationId, initialValues, onRefresh }: { 
         ))}
       </Box>
       <Box sx={{ mt: 4 }}>
-  {console.log('Signature preview URL:', signaturePreviewUrl, 'Backend file:', initialValues?.signatureFile)}
         <Typography variant="h6" fontWeight="bold" sx={{ mb: 2 }}>
           Upload Signature *
         </Typography>
